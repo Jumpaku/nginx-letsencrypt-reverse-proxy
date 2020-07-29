@@ -1,0 +1,2 @@
+test.jumpaku.net
+othello.jumpaku.net -> http://othello:8080

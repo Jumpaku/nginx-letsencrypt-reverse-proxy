@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+    nginx:
+        build: './'
+        container_name: 'nginx'
+        ports: 
+            - '80:80'
+            - '443:443'
+        environment: 
+            - "EMAIL="
+            - "STAGE=staging"
+            #- "STAGE=production"
+            - "DOMAINS=test.jumpaku.net, othello.jumpaku.net -> http://othello:8080"
+        volumes: 
+            - './domains.txt:/domains.txt:ro'
+            - './nginx-init/renew_certs.sh:/nginx-init/renew_certs.sh'
+    othello:
+        container_name: 'othello'
+        image: 'jumpaku/jumpaku-othello'
+
