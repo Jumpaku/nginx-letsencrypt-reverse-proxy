@@ -21,7 +21,7 @@ if [ $STAGE != "production" ]; then
     OPT_STAGE="--staging"
 fi
 
-OPT_DOMAINS=""
+OPT_DOMAINS="--domains "`cat /DOMAINS | python3 -c "import sys; print(','.join([l.strip().split('->')[0] for l in sys.stdin]))"`
 
 cat /DOMAINS | while read -r LINE || [ "$LINE" ]; do
     SERVER_NAME=`python3 -c "import re; print(re.split(r'\s*->\s*', '$LINE')[0])"`
@@ -40,9 +40,6 @@ cat /DOMAINS | while read -r LINE || [ "$LINE" ]; do
         cat $INDEX_HTML | sed -e "s|SERVER_NAME|$SERVER_NAME|g" > "$VHOST/index.html"
         cat $DOMAIN_STATIC_SSL_CONF | sed -e "s|SERVER_NAME|$SERVER_NAME|g" > $SERVER_NAME_SSL_CONF
     fi
-
-    OPT_DOMAINS="$OPT_DOMAINS --domain $SERVER_NAME"
-    echo $OPT_DOMAINS
 done
 ls -l "$NGINX_CONFD"
 ls -l "/var/www/vhosts/"
