@@ -20,9 +20,12 @@ SSL_CERT="$CERT_PATH/cert.pem"
 SSL_CERT_KEY="$CERT_PATH/privkey.pem"
 if [ -n "$PROXY_PASS" ] ;then
     echo "Configure: proxy HTTPS traffic on $SERVER_NAME to $PROXY_PASS"
+
+    RESOLVER=$(cat /etc/resolv.conf | grep nameserver | python3 -c "import re; print(re.split(r'\s+', input())[1])")
     cat $TEMPLATE_PROXY_SSL_CONF \
         | sed -e "s|PROXY_PASS|$PROXY_PASS|g" \
         | sed -e "s|SERVER_NAME|$SERVER_NAME|g" \
+        | sed -e "s|RESOLVER|$RESOLVER|g" \
         | sed -e "s|SSL_CERT_KEY|$SSL_CERT_KEY|g" \
         | sed -e "s|SSL_CERT|$SSL_CERT|g" \
         > $SERVER_NAME_SSL_CONF

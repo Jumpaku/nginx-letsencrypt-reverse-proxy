@@ -13,6 +13,4 @@ python3 -c "import re; [print(d.strip()) for d in re.split(r'\s*,\s*', '$DOMAINS
     CERT_PATH="/certificates/$STAGE/$SERVER_NAME"
 
     $NGINX_INIT/gen_cert.sh $STAGE $SERVER_NAME $CERT_PATH nginx
-
-    $NGINX_INIT/init_nginx.sh $CERT_PATH $SERVER_NAME $PROXY_PASS
 done
