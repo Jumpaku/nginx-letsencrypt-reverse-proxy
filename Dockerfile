@@ -21,7 +21,7 @@ RUN chmod +x /nginx-init/entrypoint.sh && \
     chmod +x /nginx-init/gen_cert.sh && \
     chmod +x /nginx-init/init_nginx.sh
 
-RUN echo "* * * * * root /nginx-init/renew_certs.sh > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
+RUN echo "13 0 * * sat root /nginx-init/renew_certs.sh > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
 
 WORKDIR /nginx-init
 
