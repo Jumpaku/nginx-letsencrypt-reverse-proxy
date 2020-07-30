@@ -8,8 +8,8 @@ services:
             - '80:80'
             - '443:443'
         environment: 
-            - "EMAIL="
-            - "STAGE=staging"
+            - "STAGE=local"
+            #- "STAGE=staging"
             #- "STAGE=production"
             - "DOMAINS=test.jumpaku.net, othello.jumpaku.net -> http://othello:8080"
         volumes: 

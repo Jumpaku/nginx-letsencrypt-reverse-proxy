@@ -17,7 +17,9 @@ RUN mv /nginx-init/default_server.conf /etc/nginx/conf.d/default_server.conf && 
 
 
 RUN chmod +x /nginx-init/entrypoint.sh && \
-    chmod +x /nginx-init/renew_certs.sh
+    chmod +x /nginx-init/renew_certs.sh && \
+    chmod +x /nginx-init/gen_cert.sh && \
+    chmod +x /nginx-init/init_nginx.sh
 
 RUN echo "* * * * * root /nginx-init/renew_certs.sh > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
 
