@@ -29,6 +29,7 @@ python3 -c "import re; [print(d.strip()) for d in re.split(r'\s*,\s*', '$DOMAINS
 done
 
 if [ -e /etc/letsencrypt/live/ ]; then 
+    mkdir -p /certificates
     rm -rf /certificates/*
     cp -R --dereference /etc/letsencrypt/live/* /certificates/
 fi

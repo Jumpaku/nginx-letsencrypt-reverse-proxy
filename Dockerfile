@@ -11,6 +11,10 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY ./nginx-init/ /nginx-init/
+RUN mv /nginx-init/default_server.conf /etc/nginx/conf.d/default_server.conf && \
+    rm -r /etc/nginx/sites-available && \
+    rm -r /etc/nginx/sites-enabled
+
 
 RUN chmod +x /nginx-init/entrypoint.sh && \
     chmod +x /nginx-init/renew_certs.sh

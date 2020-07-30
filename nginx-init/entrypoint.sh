@@ -24,11 +24,12 @@ TEMPLATE_CONF="$NGINX_INIT/templates/DOMAIN.conf"
 TEMPLATE_PROXY_SSL_CONF="$NGINX_INIT/templates/DOMAIN.proxy.ssl.conf"
 TEMPLATE_STATIC_SSL_CONF="$NGINX_INIT/templates/DOMAIN.static.ssl.conf"
 
+
 python3 -c "import re; [print(d.strip()) for d in re.split(r'\s*,\s*', '$DOMAINS')]" | while read -r LINE || [ "$LINE" ]; do
     SERVER_NAME=$(python3 -c "import re; print(re.split(r'\s*->\s*', '$LINE'.strip())[0].strip())")
     PROXY_PASS=$(python3 -c "import re; print(''.join(re.split(r'\s*->\s*', '$LINE')[1:]).strip())")
 
-    echo "Generate: ssl certificates for $SERVER_NAME"
+    echo "Generate certificates for $SERVER_NAME"
     certbot certonly --standalone --non-interactive --quiet \
         --agree-tos \
         --keep-until-expiring \
@@ -55,6 +56,7 @@ python3 -c "import re; [print(d.strip()) for d in re.split(r'\s*,\s*', '$DOMAINS
 done
 
 if [ -e /etc/letsencrypt/live/ ]; then 
+    mkdir -p /certificates
     rm -rf /certificates/*
     cp -R --dereference /etc/letsencrypt/live/* /certificates/
 fi
