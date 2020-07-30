@@ -15,7 +15,7 @@ COPY ./nginx-init/ /nginx-init/
 RUN chmod +x /nginx-init/entrypoint.sh && \
     chmod +x /nginx-init/renew_certs.sh
 
-RUN echo "* * * * * root certbot renew > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
+RUN echo "* * * * * root /nginx-init/renew_certs.sh > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
 
 WORKDIR /nginx-init
 
