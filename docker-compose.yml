@@ -1,0 +1,20 @@
+version: '3'
+
+services: 
+   reverse_proxy:
+      container_name: 'reverse_proxy'
+      build: './'
+      ports: 
+            - '80:80'
+            - '443:443'
+      environment: 
+            - "RENEW_SCHED="
+            - "STAGE=local"
+            #- "STAGE=staging"
+            #- "STAGE=production"
+            - "DOMAINS=sub0.example.com, sub1.example.com -> http://othello:8080"
+      volumes: 
+            - "./certificates:/certificates"
+   othello:
+      container_name: 'othello'
+      image: 'jumpaku/jumpaku-othello'
