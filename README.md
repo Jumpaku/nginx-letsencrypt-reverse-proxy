@@ -1,4 +1,4 @@
-# nginx-ssl-reverse-proxy
+# nginx-letsencrypt-reverse-proxy
 
 A docker image of reverse proxy.
 
