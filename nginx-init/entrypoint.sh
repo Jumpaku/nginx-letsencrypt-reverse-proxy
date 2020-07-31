@@ -1,9 +1,13 @@
 #!/bin/sh
 
-#openssl dhparam -out /var/lib/nginx/dhparam.pem 2048
+openssl dhparam -out /var/lib/nginx/dhparam.pem 2048
 
 echo $DOMAINS > /DOMAINS
 echo $STAGE > /STAGE
+RENEW_SCHED=$(python3 -c "print('$RENEW_SCHED' if '$RENEW_SCHED' else '0 0 1 * *')")
+echo "Cofigure: schedule of attempts to renew certificates by '$RENEW_SCHED'"
+echo "$RENEW_SCHED root /nginx-init/renew_certs.sh > /proc/\$(cat /run/nginx.pid)/fd/1 2>&1" >> /etc/crontab
+
 
 NGINX_INIT="/nginx-init"
 

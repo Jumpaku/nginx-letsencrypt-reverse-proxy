@@ -31,9 +31,6 @@ if [ -n "$PROXY_PASS" ] ;then
         > $SERVER_NAME_SSL_CONF
 else
     echo "Configure: notify no web site exists on $SERVER_NAME"
-    VHOST="/var/www/vhosts/$SERVER_NAME"
-    mkdir -p $VHOST
-    cat $TEMPLATE_INDEX | sed -e "s|SERVER_NAME|$SERVER_NAME|g" > "$VHOST/index.html"
     cat $TEMPLATE_STATIC_SSL_CONF \
         | sed -e "s|SERVER_NAME|$SERVER_NAME|g" \
         | sed -e "s|SSL_CERT_KEY|$SSL_CERT_KEY|g" \
