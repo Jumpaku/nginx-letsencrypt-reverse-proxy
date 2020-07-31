@@ -18,7 +18,6 @@ if [ $STAGE != "staging" -a $STAGE != "production" ]; then
     openssl x509 -req -CA "$CERT_PATH/ca_cert.pem" -CAkey "$CERT_PATH/ca_privkey.pem" -set_serial $SERIAL -in "$CERT_PATH/csr.pem" -out "$CERT_PATH/cert.pem" -days 365
 else 
     OPT_STAGE=$(python3 -c "if '$STAGE' != 'production': print('--staging') ")
-    echo OPT_STAGE $OPT_STAGE
     certbot certonly --$PLUGIN --non-interactive --quiet \
         --agree-tos \
         --keep-until-expiring \
