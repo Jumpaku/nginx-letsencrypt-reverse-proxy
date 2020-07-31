@@ -2,9 +2,7 @@
 
 A docker image of reverse proxy.
 
-## Introduction
-
-* It routes requests based on host fields of thier headers.
+* It routes requests based on host fields of request headers.
 * It redirects all HTTP requests to HTTPS.
 * It obtains and renews Let's Encrypt certificates automatically.
 
@@ -29,6 +27,7 @@ A docker image of reverse proxy.
 ## Volumes
 
 ### `/certificates/`
+
 Obtained certificates are placed at `/certificates/STAGE/domain/` in the container. 
 
 ## Example
