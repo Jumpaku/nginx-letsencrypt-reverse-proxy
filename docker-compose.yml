@@ -8,12 +8,11 @@ services:
             - '80:80'
             - '443:443'
         environment: 
-            - "EMAIL="
+            #- "STAGE=local"
             - "STAGE=staging"
             #- "STAGE=production"
             - "DOMAINS=test.jumpaku.net, othello.jumpaku.net -> http://othello:8080"
         volumes: 
-            - './domains.txt:/domains.txt:ro'
             - './nginx-init/renew_certs.sh:/nginx-init/renew_certs.sh'
     othello:
         container_name: 'othello'
