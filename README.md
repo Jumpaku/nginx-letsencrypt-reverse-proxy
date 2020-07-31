@@ -39,7 +39,7 @@ Obtained certificates are placed at `/certificates/STAGE/domain/` in the contain
    services: 
       reverse_proxy:
          container_name: 'reverse_proxy'
-         build: './'
+         image: 'jumpaku/nginx-letsencrypt-reverse-proxy'
          ports: 
                - '80:80'
                - '443:443'
