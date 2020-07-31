@@ -15,7 +15,7 @@ A docker image of reverse proxy.
 | `STAGE`      |  `local`               | no      | stage to deploy |
 
 
-* `RENEW_SCHED` is specified as a cron expression. See <a href='https://crontab.guru#0_0_1_*_*'>https://crontab.guru</a>.
+* `RENEW_SCHED` is specified as a cron expression. See https://crontab.guru.
 * `DOMAINS` is specified as a `,` separated sequense, each element of which is represented as `domain` or `domain -> URL`.
    * For each element represented as `domain`, the container obtains and renews certificate of the `domain`.
    * For each element represented as `domain -> URL`, in addition to the above, the container routes requests with the `domain` to the specified `URL`.
