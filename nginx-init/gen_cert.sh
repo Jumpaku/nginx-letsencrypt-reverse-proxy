@@ -16,6 +16,8 @@ if [ $STAGE != "staging" -a $STAGE != "production" ]; then
     openssl req -new -newkey rsa:2048 -nodes -out "$CERT_PATH/csr.pem" -keyout "$CERT_PATH/privkey.pem" -subj="/CN=$SERVER_NAME"
     SERIAL="0x$(echo -n $SERVER_NAME | sha256sum | awk '{print $1}')"
     openssl x509 -req -CA "$CERT_PATH/ca_cert.pem" -CAkey "$CERT_PATH/ca_privkey.pem" -set_serial $SERIAL -in "$CERT_PATH/csr.pem" -out "$CERT_PATH/cert.pem" -days 365
+    cp "$CERT_PATH/cert.pem" "$CERT_PATH/chain.pem"
+    cp "$CERT_PATH/cert.pem" "$CERT_PATH/fullchain.pem"
 else 
     OPT_STAGE=$(python3 -c "if '$STAGE' != 'production': print('--staging') ")
     certbot certonly --$PLUGIN --non-interactive --quiet \
