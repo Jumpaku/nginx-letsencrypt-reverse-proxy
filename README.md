@@ -16,11 +16,11 @@ A docker image of reverse proxy.
 
 
 * `RENEW_SCHED` is specified as a cron expression. See https://crontab.guru.
-* `DOMAINS` is specified as a `,` separated sequense, each element of which is represented as `domain` or `domain -> URL`.
-   * For each element represented as `domain`, the container obtains and renews certificate of the `domain`.
+* `DOMAINS` is specified as a `,` separated sequence, each element of which is represented as `domain` or `domain -> URL`.
+   * For each element represented as `domain`, the container obtains and renews the certificate of the `domain`.
    * For each element represented as `domain -> URL`, in addition to the above, the container routes requests with the `domain` to the specified `URL`.
 * `STAGE` is specified as one of `local`, `staging` or `production`.
-   * If `local` is specified, the container obtains and renews self signed certificates.
+   * If `local` is specified, the container obtains and renews self-signed certificates.
    * If `staging` is specified, the container obtains and renews Let's Encrypt certificates for testing.
    * If `production` is specified, the container obtains and renews Let's Encrypt certificates for publishing.
 
@@ -32,7 +32,11 @@ Obtained certificates are placed at `/certificates/STAGE/domain/` in the contain
 
 ## Example
 
-1. Run docker-compose with the following `docker-compose.yml`.
+1. Run docker-compose 
+   ```sh
+   docker-compose up --build -d
+   ```
+   with the following `docker-compose.yml`.
    ```yml
    version: '3'
 

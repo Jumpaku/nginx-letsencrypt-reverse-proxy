@@ -16,7 +16,7 @@ echo "Configure: redirect HTTP traffic on $SERVER_NAME to HTTPS"
 cat $TEMPLATE_CONF | sed -e "s|SERVER_NAME|$SERVER_NAME|g" > "$NGINX_CONFD/$SERVER_NAME.conf"
 
 SERVER_NAME_SSL_CONF="$NGINX_CONFD/$SERVER_NAME.ssl.conf"
-SSL_CERT="$CERT_PATH/cert.pem"
+SSL_CERT="$CERT_PATH/fullchain.pem"
 SSL_CERT_KEY="$CERT_PATH/privkey.pem"
 if [ -n "$PROXY_PASS" ] ;then
     echo "Configure: proxy HTTPS traffic on $SERVER_NAME to $PROXY_PASS"
