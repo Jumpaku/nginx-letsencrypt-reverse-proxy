@@ -32,7 +32,11 @@ Obtained certificates are placed at `/certificates/STAGE/domain/` in the contain
 
 ## Example
 
-1. Run docker-compose with the following `docker-compose.yml`.
+1. Run docker-compose 
+   ```sh
+   docker-compose up --build -d
+   ```
+   with the following `docker-compose.yml`.
    ```yml
    version: '3'
 
