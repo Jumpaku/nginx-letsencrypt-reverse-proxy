@@ -18,7 +18,6 @@ Configure() {
     CONFIG_NAME=$2
     CONFIG_VALUE=$3
     DEFAULT_VALUE=$4
-    echo "'$1', '$2', '$3', '$4'"
     if [ -z "${ENV_VAL}" ]; then
         sed -i -e "s|${CONFIG_NAME}|${DEFAULT_VALUE}|g" "${NGINX_CONF}"
     else
