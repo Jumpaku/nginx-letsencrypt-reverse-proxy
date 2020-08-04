@@ -13,6 +13,7 @@ A docker image of reverse proxy.
 | `RENEW_SCHED`    | `0 0 1 * *` | no       | schedule of certificates renewal attempts  |
 | `DOMAINS`   | ` `            | no       | domains and their routings |
 | `STAGE`      |  `local`               | no      | stage to deploy |
+| `CLIENT_MAX_BODY_SIZE` | `1m` | no | client_max_body_size |
 
 
 * `RENEW_SCHED` is specified as a cron expression. See https://crontab.guru.
@@ -23,6 +24,7 @@ A docker image of reverse proxy.
    * If `local` is specified, the container obtains and renews self-signed certificates.
    * If `staging` is specified, the container obtains and renews Let's Encrypt certificates for testing.
    * If `production` is specified, the container obtains and renews Let's Encrypt certificates for publishing.
+* `CLIENT_MAX_BODY_SIZE`: See client_max_body_size at http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
 
 ## Volumes
 
