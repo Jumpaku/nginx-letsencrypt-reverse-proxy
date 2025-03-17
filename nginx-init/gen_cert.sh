@@ -22,7 +22,6 @@ else
     OPT_STAGE=$(python3 -c "if '$STAGE' != 'production': print('--staging') ")
     certbot certonly --$PLUGIN --non-interactive --quiet \
         --agree-tos \
-        #--keep-until-expiring \
         --register-unsafely-without-email \
         $OPT_STAGE \
         --domain $SERVER_NAME
